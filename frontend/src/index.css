@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased bg-background text-text-light font-sans overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-green text-white px-6 py-2.5 font-semibold inline-flex items-center gap-2 rounded-full transition-opacity hover:opacity-90;
+  }
+  .btn-gradient {
+    @apply bg-gradient-button text-white px-7 py-3 font-semibold inline-flex items-center justify-center gap-2 rounded-full transition-opacity hover:opacity-90;
+  }
+  .glass-card {
+    @apply bg-surface border border-border p-5 flex flex-col gap-3 rounded-xl;
+  }
+}
+
+/* Custom Scrollbar for IDE feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+  background: #2e2e33; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a52; 
+}

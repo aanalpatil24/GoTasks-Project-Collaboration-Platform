@@ -1,0 +1,84 @@
+GoTasks/
+├── .env                    # Active environment variables (git-ignored)
+├── .env.example            # Template for environment variables (safe for source control)
+├── .gitignore              # Unified ignore rules (Python, Node, OS, Docker)
+├── docker-compose.yml      # Orchestration for all 5 services (db, redis, backend, frontend, nginx)
+├── setup.sh                # Automated bootstrap & initialization script
+├── README.md               # Technical documentation
+├── Project_Structure.txt   # Structural Document
+├── backend/                # Django ASGI Application Root
+│   ├── Dockerfile          # Multi-stage production build (non-root user)
+│   ├── requirements.txt    # Production dependencies (psycopg2, django-redis, channels, etc.)
+│   ├── manage.py           # Django CLI
+│   ├── media/              # User-uploaded avatars (Persistent Volume via Docker)
+│   ├── staticfiles/        # Collected static assets (Persistent Volume via Docker)
+│   ├── config/             # Project Core Settings
+│   │   ├── __init__.py
+│   │   ├── asgi.py         # ASGI entry point for Daphne/Channels
+│   │   ├── wsgi.py
+│   │   ├── settings.py     # Contains STATIC_ROOT configurations
+│   │   └── urls.py
+│   └── apps/               # Modular Application Logic
+│       ├── users/          # Auth, JWT & Profile Management
+│       │   ├── admin.py
+│       │   ├── apps.py
+│       │   ├── middleware.py
+│       │   ├── models.py
+│       │   ├── serializers.py
+│       │   ├── signals.py
+│       │   ├── urls.py
+│       │   └── views.py
+│       ├── tasks/          # Kanban & Real-time Tasks
+│       │   ├── admin.py
+│       │   ├── apps.py
+│       │   ├── models.py
+│       │   ├── routing.py  # WebSocket route definitions
+│       │   ├── serializers.py
+│       │   ├── signals.py
+│       │   ├── urls.py
+│       │   └── views.py
+│       └── projects/       # Workspace & Membership Service
+│           ├── admin.py
+│           ├── apps.py
+│           ├── consumers.py # Django Channels WebSocket consumer logic
+│           ├── permissions.py
+│           ├── models.py
+│           ├── serializers.py
+│           ├── urls.py
+│           └── views.py
+├── frontend/               # Vite + React 18 Application Root
+│   ├── Dockerfile          # Node Alpine build environment
+│   ├── package.json        # Node dependencies and scripts
+│   ├── vite.config.js      # Vite bundler configuration
+│   ├── index.html          # Vite Entry Point (Must be at root)
+│   ├── public/             # Static public assets (Favicon, raw images)
+│   │   └── vite.svg
+│   └── src/                # React Source Code
+│       ├── App.jsx         # Main Application Router
+│       ├── main.jsx        # React DOM render entry
+│       ├── index.css       # Tailwind & Global Styles (Dark theme config)
+│       ├── components/     # Reusable UI Components
+│       │   ├── KanbanBoard.jsx
+│       │   ├── Layout.jsx
+│       │   ├── MemberModal.jsx
+│       │   ├── NewProjectModal.jsx
+│       │   ├── PrivateRoute.jsx
+│       │   ├── ProjectCard.jsx
+│       │   └── TaskModal.jsx
+│       ├── hooks/          # Custom Hooks
+│       │   └── useWebSocket.js
+│       ├── lib/            # Shared Libraries
+│       │   └── axios.js    # Axios interceptor for JWT refresh
+│       ├── pages/          # View Pages
+│       │   ├── Dashboard.jsx
+│       │   ├── Landing.jsx
+│       │   ├── Login.jsx
+│       │   ├── ProjectDetail.jsx # Contains the IDE interface
+│       │   ├── Register.jsx
+│       │   └── TaskBoard.jsx
+│       └── store/          # Zustand State Management
+│           ├── authStore.js
+│           ├── projectStore.js
+│           └── taskStore.js
+└── nginx/                  # Reverse Proxy & Gateway
+    └── nginx.conf          # API/WS routing, Admin bypass, & Static file aliasing

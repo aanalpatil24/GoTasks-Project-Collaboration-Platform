@@ -1,0 +1,52 @@
+# SECURITY & LOCAL SECRETS (CRITICAL)
+# Prevents API keys, database passwords, and local environment variables from leaking to GitHub
+.env
+
+# DJANGO LOCAL DATA & MEDIA
+# Ignores local development databases to prevent merge conflicts
+db.sqlite3
+*.sqlite3
+
+# Ignores user-uploaded files and compiled static assets (these belong in S3/Cloud Storage, not Git)
+media/
+staticfiles/
+
+# PYTHON VIRTUAL ENVIRONMENTS
+# Ignores the heavy local dependency folders
+env/
+venv/
+.venv/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+
+# PYTHON COMPILED BYTECODE
+__pycache__/
+*.py[cod]
+*$py.class
+
+# TESTING, CACHE & LINTING TOOLS
+.tox/
+.coverage
+.coverage.*
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.mypy_cache/
+.pytest_cache/
+.hypothesis/
+
+# OS & IDE SYSTEM FILES (NEW PREVENTATIVE RULES)
+# Mac / Windows clutter
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# VSCode / PyCharm / IntelliJ local workspace settings
+.vscode/
+.idea/
+*.swp
+*.swo
