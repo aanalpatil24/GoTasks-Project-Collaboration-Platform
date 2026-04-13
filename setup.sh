@@ -46,10 +46,10 @@ echo -e "${BLUE}[INFO]: Initializing Root Administrator account (Interactive)...
 docker compose run --rm backend python manage.py createsuperuser || echo -e "${BLUE}[INFO]: Superuser creation bypassed or already exists.${NC}"
 
 echo -e "\n${GREEN}[SYSTEM]: Deployment architecture successfully scaffolded!${NC}"
-echo "========================================================"
+echo "-------------------------------------------------------------------------"
 echo -e "Access the application via the Nginx Gateway:"
 echo -e "  > ${GREEN}Main Workspace:${NC}  http://localhost"
 echo -e "  > ${GREEN}Admin Terminal:${NC}  http://localhost/admin"
-echo "========================================================"
+echo "-------------------------------------------------------------------------"
 echo -e "Execute '${BLUE}docker compose up${NC}' to boot the full stack."
 echo -e "Execute '${BLUE}docker compose down${NC}' to suspend operations."
