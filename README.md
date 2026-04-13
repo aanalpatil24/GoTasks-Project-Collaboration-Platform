@@ -63,3 +63,4 @@ cd gotasks
 # 2. Run the automated setup
 chmod +x setup.sh
 ./setup.sh
+```
